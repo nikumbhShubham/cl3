@@ -1,0 +1,121 @@
+================================================================================
+                    CL3 COMPREHENSIVE LAB MANUAL (P1 - P10)
+================================================================================
+
+--------------------------------------------------------------------------------
+HADOOP ON UBUNTU: STEP-BY-STEP (FOR P3 & P10)
+--------------------------------------------------------------------------------
+1. START HADOOP (Type these one by one):
+   $ start-dfs.sh
+   $ start-yarn.sh
+
+2. VERIFY (Type 'jps'):
+   $ jps
+   (Ensure you see: NameNode, DataNode, ResourceManager, NodeManager)
+
+3. THE STREAMING JAR (The "Obvious" Path):
+   In most Ubuntu labs, the JAR is located exactly here:
+   /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar
+   (Note: If your version is different, e.g., 3.2.1, change the number)
+
+4. RUNNING A JOB (The "Recipe"):
+   Step A: Upload your input file to Hadoop's memory:
+   $ hadoop fs -put weather_data.txt /
+
+   Step B: Run the MapReduce (Copy and paste this long command):
+   $ hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar \
+     -file weather_mapper.py -mapper "python3 weather_mapper.py" \
+     -file weather_reducer.py -reducer "python3 weather_reducer.py" \
+     -input /weather_data.txt \
+     -output /weather_output
+
+   Step C: View the final answer:
+   $ hadoop fs -cat /weather_output/part-00000
+
+--------------------------------------------------------------------------------
+OPERATING SYSTEM QUICK COMMANDS
+--------------------------------------------------------------------------------
+| Action           | Ubuntu (Terminal) | Windows (CMD)      |
+|------------------|-------------------|--------------------|
+| Run Python       | python3 file.py   | python file.py     |
+| View File        | cat file.txt      | type file.txt      |
+| List Files       | ls                | dir                |
+| Piping           | cat file | sort   | type file | sort   |
+
+--------------------------------------------------------------------------------
+P1: DISTRIBUTED APPLICATION USING RPC (FACTORIAL)
+--------------------------------------------------------------------------------
+- Files: p1_server.py, p1_client.py
+- Run:
+  Terminal 1: python p1_server.py
+  Terminal 2: python p1_client.py
+- Input: Enter an integer (e.g., 5).
+
+--------------------------------------------------------------------------------
+P2: DISTRIBUTED APPLICATION USING RMI (STRING CONCATENATION)
+--------------------------------------------------------------------------------
+- Files: p2_server.py, p2_client.py
+- Run:
+  Terminal 1: python p2_server.py
+  Terminal 2: python p2_client.py
+- Input: Enter two strings (e.g., "Hello" and "World").
+
+--------------------------------------------------------------------------------
+P3: MAPREDUCE (CHARACTER & WORD COUNT)
+--------------------------------------------------------------------------------
+- Files: p3_word_mapper.py, p3_word_reducer.py, input.txt
+- Windows CMD: type input.txt | python p3_word_mapper.py | sort | python p3_word_reducer.py
+- Ubuntu: cat input.txt | python3 p3_word_mapper.py | sort | python3 p3_word_reducer.py
+
+--------------------------------------------------------------------------------
+P4: FUZZY LOGIC SET OPERATIONS
+--------------------------------------------------------------------------------
+- Files: p4_fuzzy.py
+- Run: python p4_fuzzy.py
+- Sample Input: 1,0.5,2,0.8,3,1.0
+
+--------------------------------------------------------------------------------
+P5: HYBRID GA-NN (COCONUT MILK SPRAY DRYING)
+--------------------------------------------------------------------------------
+- Files: p5_genetic_algo.py
+- Run: python p5_genetic_algo.py
+- Input: Pop Size: 50, Generations: 30
+
+--------------------------------------------------------------------------------
+P6: CLONAL SELECTION ALGORITHM (CSA)
+--------------------------------------------------------------------------------
+- Files: p6_clonal_selection.py
+- Run: python p6_clonal_selection.py
+- Input: Pop: 20, Gen: 50
+
+--------------------------------------------------------------------------------
+P7: ARTIFICIAL IMMUNE PATTERN RECOGNITION (AIPRS)
+--------------------------------------------------------------------------------
+- Files: p7_aiprs.py
+- Run: python p7_aiprs.py
+- Input: Samples: 500, Detectors: 25
+
+--------------------------------------------------------------------------------
+P8: EVOLUTIONARY OPTIMIZATION (DEAP FRAMEWORK)
+--------------------------------------------------------------------------------
+- Files: p8_deap.py
+- Run: python p8_deap.py
+- Input: Dimensions: 3, Generations: 40
+
+--------------------------------------------------------------------------------
+P9: DISTRIBUTED HOTEL BOOKING (JAVA RMI)
+--------------------------------------------------------------------------------
+- Files: HotelInterface.java, HotelImpl.java, HotelServer.java, HotelClient.java
+- Windows/Ubuntu CMD:
+  1. javac *.java
+  2. java HotelServer (New terminal)
+  3. java HotelClient (New terminal)
+
+--------------------------------------------------------------------------------
+P10: WEATHER DATA ANALYSIS (COOLEST/HOTTEST YEAR)
+--------------------------------------------------------------------------------
+- Files: weather_mapper.py, weather_reducer.py, weather_data.txt
+- Windows CMD: type weather_data.txt | python weather_mapper.py | sort | python weather_reducer.py
+- Ubuntu: cat weather_data.txt | python3 weather_mapper.py | sort | python3 weather_reducer.py
+- API Version: python p10_weather_nasa.py
+================================================================================

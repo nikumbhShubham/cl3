@@ -1,0 +1,5 @@
+Hadoop is a framework for distributed storage.
+MapReduce is a programming model for distributed computing.
+Hadoop and MapReduce are part of the Apache Hadoop project.
+Hadoop is powerful.
+MapReduce is efficient.
